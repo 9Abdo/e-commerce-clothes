@@ -1,5 +1,6 @@
 import 'package:e_commerce_clothes/route/approute.dart';
 import 'package:e_commerce_clothes/route/const_route.dart';
+import 'package:e_commerce_clothes/utils/constimage.dart';
 import 'package:e_commerce_clothes/utils/style.dart';
 import 'package:e_commerce_clothes/widget/custombutton.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class Onbording extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage("assets/images/onbording.webp"),
+                      image: AssetImage(Constimage.onbordingimage),
                     ),
                   ),
                 ),

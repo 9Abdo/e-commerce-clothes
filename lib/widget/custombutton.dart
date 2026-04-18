@@ -17,7 +17,7 @@ class Custombutton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.primaryColor,
-        minimumSize: Size(double.infinity, 50.h),
+        minimumSize: Size(double.infinity.w, 50.h),
       ),
       onPressed: onPressed,
       child: Text(buttonName, style: AppStyle.buttonStyle),
