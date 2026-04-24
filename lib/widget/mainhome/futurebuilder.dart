@@ -1,4 +1,3 @@
-import 'package:e_commerce_clothes/helper/favorite_manager.dart';
 import 'package:e_commerce_clothes/models/clothesmodel.dart';
 import 'package:e_commerce_clothes/widget/mainhome/grideviewcard.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,6 @@ class Futurebuilder extends StatelessWidget {
           return Center(child: Text("No Data"));
         } else {
           List<Clothesmodel> clothes = snapshot.data!;
-          FavoriteManager.setClothes(clothes);
           List<Clothesmodel> filteredClothes = clothes.where((item) {
             return item.clothesType.toLowerCase().startsWith(searchtext);
           }).toList();

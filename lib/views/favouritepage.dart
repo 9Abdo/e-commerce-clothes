@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:e_commerce_clothes/features/favourite/bloc/favourite_bloc.dart';
+import 'package:e_commerce_clothes/features/favourite/bloc/favourite_state.dart';
 import 'package:e_commerce_clothes/widget/mainhome/grideviewcard.dart';
-import 'package:e_commerce_clothes/helper/favorite_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -8,20 +10,17 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(24.sp),
-      child: ValueListenableBuilder(
-        valueListenable: FavoriteManager.favoritesNotifier,
-        builder: (context, value, child) {
-          final favClothes = FavoriteManager.getFavorites();
+    return BlocBuilder<FavoriteBloc, FavoriteState>(
+      builder: (context, state) {
+        if (state.favorites.isEmpty) {
+          return Center(child: Text("No Favorites Yet ❤️"));
+        }
 
-          if (favClothes.isEmpty) {
-            return Center(child: Text("No Favorites Yet ❤️"));
-          }
-
-          return Grideviewcard(clothesmodel: favClothes);
-        },
-      ),
+        return Padding(
+          padding: EdgeInsets.all(16.sp),
+          child: Grideviewcard(clothesmodel: state.favorites),
+        );
+      },
     );
   }
 }
