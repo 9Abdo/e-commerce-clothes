@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_clothes/features/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_clothes/features/cart/bloc/cart_event.dart';
+import 'package:e_commerce_clothes/features/cart/bloc/cart_state.dart';
 import 'package:e_commerce_clothes/models/clothesmodel.dart';
 import 'package:e_commerce_clothes/utils/style.dart';
 import 'package:e_commerce_clothes/widget/custombutton.dart';
@@ -61,10 +62,33 @@ class ProductDetails extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Expanded(
-                      child: Custombutton(
-                        buttonName: "Add to Card",
-                        onPressed: () {
-                          context.read<CartBloc>().add(AddToCart(clothesModel));
+                      child: BlocBuilder<CartBloc, CartState>(
+                        builder: (context, state) {
+                          final id = clothesModel.id;
+
+                          final isLoading = state.loadingItems.contains(id);
+                          final isAdded = state.addedItems.contains(id);
+
+                          if (isLoading) {
+                            return Container(
+                              height: 50.h,
+                              alignment: Alignment.center,
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          return Custombutton(
+                            buttonName: isAdded
+                                ? "Added to Cart"
+                                : "Add to Cart",
+                            onPressed: isAdded
+                                ? null
+                                : () {
+                                    context.read<CartBloc>().add(
+                                      AddToCart(clothesModel),
+                                    );
+                                  },
+                          );
                         },
                       ),
                     ),
