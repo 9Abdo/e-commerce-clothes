@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_clothes/features/cart/bloc/cart_bloc.dart';
+import 'package:e_commerce_clothes/features/cart/bloc/cart_event.dart';
 import 'package:e_commerce_clothes/models/clothesmodel.dart';
 import 'package:e_commerce_clothes/utils/style.dart';
 import 'package:e_commerce_clothes/widget/custombutton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -60,7 +63,9 @@ class ProductDetails extends StatelessWidget {
                     Expanded(
                       child: Custombutton(
                         buttonName: "Add to Card",
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<CartBloc>().add(AddToCart(clothesModel));
+                        },
                       ),
                     ),
                   ],

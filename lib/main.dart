@@ -1,3 +1,4 @@
+import 'package:e_commerce_clothes/features/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_clothes/features/favourite/bloc/favourite_bloc.dart';
 import 'package:e_commerce_clothes/route/approute.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,14 +20,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(390, 844),
-      child: BlocProvider(
+      child: MultiBlocProvider(
+    providers: [
+      BlocProvider(
         create: (context) => FavoriteBloc(),
-        child: MaterialApp.router(
-          theme: ThemeData.light(),
-          routerConfig: goRouter,
-          debugShowCheckedModeBanner: false,
-        ),
       ),
+      BlocProvider(
+        create: (context) => CartBloc(),
+      ),
+    ],
+    child: MaterialApp.router(
+      theme: ThemeData.light(),
+      routerConfig: goRouter,
+      debugShowCheckedModeBanner: false,
+    ),
+  ),
     );
   }
 }

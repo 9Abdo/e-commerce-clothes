@@ -1,4 +1,5 @@
 import 'package:e_commerce_clothes/utils/color.dart';
+import 'package:e_commerce_clothes/views/cartpage.dart';
 import 'package:e_commerce_clothes/views/favouritepage.dart';
 import 'package:e_commerce_clothes/views/mainhome.dart';
 import 'package:flutter/material.dart';
@@ -13,17 +14,13 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   late List<Widget> screen;
   int currentindex = 0;
-  @override 
+  @override
   void initState() {
     super.initState();
     screen = [
       Mainhome(),
       FavoritePage(),
-      Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.green,
-      ),
+      Cartpage(),
       Container(
         height: double.infinity,
         width: double.infinity,

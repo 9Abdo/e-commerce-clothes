@@ -33,5 +33,10 @@ class AppStyle {
     color: AppColor.titleColor,
     fontWeight: FontWeight.w600,
   );
+  static TextStyle titlecard = TextStyle(
+    fontSize: 14.sp,
+    color: AppColor.titleColor,
+    fontWeight: FontWeight.w600,
+  );
    
 }
