@@ -1,3 +1,4 @@
+import 'package:e_commerce_clothes/models/cartmodel.dart';
 import 'package:e_commerce_clothes/models/clothesmodel.dart';
 
 abstract class CartEvent {}
@@ -22,3 +23,8 @@ class DecreaseQuantity extends CartEvent {
   DecreaseQuantity(this.product);
 }
 class ClearCart extends CartEvent {}
+class UpdateCartFromFirebase extends CartEvent {
+  final List<CartModel> items;
+
+  UpdateCartFromFirebase(this.items);
+}
