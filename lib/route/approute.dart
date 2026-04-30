@@ -5,6 +5,7 @@ import 'package:e_commerce_clothes/views/loginpage.dart';
 import 'package:e_commerce_clothes/views/onbording.dart';
 import 'package:e_commerce_clothes/views/product_details.dart';
 import 'package:e_commerce_clothes/views/registerpage.dart';
+import 'package:e_commerce_clothes/views/successpage.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter goRouter = GoRouter(
@@ -45,6 +46,13 @@ GoRouter goRouter = GoRouter(
       builder: (context, state) {
         Clothesmodel clothesmodel = state.extra as Clothesmodel;
         return ProductDetails(clothesModel: clothesmodel);
+      },
+    ),
+     GoRoute(
+      path: RoutePath.successPath,
+      name: RouteName.successName,
+      builder: (context, state) {
+        return Successpage();
       },
     ),
   ],

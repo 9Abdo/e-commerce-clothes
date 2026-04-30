@@ -72,5 +72,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
       emit(state.copyWith(items: items));
     });
+    on<ClearCart>((event, emit) {
+      emit(CartState(items: [], loadingItems: {}, addedItems: {}));
+    });
   }
 }
