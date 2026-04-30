@@ -1,4 +1,5 @@
 import 'package:e_commerce_clothes/utils/color.dart';
+import 'package:e_commerce_clothes/views/accountpage.dart';
 import 'package:e_commerce_clothes/views/cartpage.dart';
 import 'package:e_commerce_clothes/views/favouritepage.dart';
 import 'package:e_commerce_clothes/views/mainhome.dart';
@@ -17,16 +18,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
-    screen = [
-      Mainhome(),
-      FavoritePage(),
-      Cartpage(),
-      Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.orange,
-      ),
-    ];
+    screen = [Mainhome(), FavoritePage(), Cartpage(), Accountpage()];
   }
 
   @override
