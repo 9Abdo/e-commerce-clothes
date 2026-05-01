@@ -1,3 +1,5 @@
+import 'package:e_commerce_clothes/route/approute.dart';
+import 'package:e_commerce_clothes/route/const_route.dart';
 import 'package:e_commerce_clothes/utils/style.dart';
 import 'package:e_commerce_clothes/widget/Account/add_phote.dart';
 import 'package:e_commerce_clothes/widget/Account/list_tile.dart';
@@ -36,8 +38,10 @@ class Accountpage extends StatelessWidget {
               SizedBox(height: 16.h),
               Listtile(
                 leading: Icons.support_agent_rounded,
-                title: "Supports",
-                onTap: () {},
+                title: "Help Center",
+                onTap: () {
+                  goRouter.pushNamed(RouteName.helpCenter);
+                },
               ),
               SizedBox(height: 16.h),
               Listtile(

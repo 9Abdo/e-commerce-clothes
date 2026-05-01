@@ -1,5 +1,6 @@
 import 'package:e_commerce_clothes/models/clothesmodel.dart';
 import 'package:e_commerce_clothes/route/const_route.dart';
+import 'package:e_commerce_clothes/views/help_center.dart';
 import 'package:e_commerce_clothes/views/homepage.dart';
 import 'package:e_commerce_clothes/views/loginpage.dart';
 import 'package:e_commerce_clothes/views/onbording.dart';
@@ -48,11 +49,18 @@ GoRouter goRouter = GoRouter(
         return ProductDetails(clothesModel: clothesmodel);
       },
     ),
-     GoRoute(
+    GoRoute(
       path: RoutePath.successPath,
       name: RouteName.successName,
       builder: (context, state) {
         return Successpage();
+      },
+    ),
+    GoRoute(
+      path: RoutePath.helpcenter,
+      name: RouteName.helpCenter,
+      builder: (context, state) {
+        return HelpCenter();
       },
     ),
   ],
