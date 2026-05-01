@@ -3,6 +3,7 @@ import 'package:e_commerce_clothes/route/const_route.dart';
 import 'package:e_commerce_clothes/views/help_center.dart';
 import 'package:e_commerce_clothes/views/homepage.dart';
 import 'package:e_commerce_clothes/views/loginpage.dart';
+import 'package:e_commerce_clothes/views/myorderpage.dart';
 import 'package:e_commerce_clothes/views/onbording.dart';
 import 'package:e_commerce_clothes/views/product_details.dart';
 import 'package:e_commerce_clothes/views/registerpage.dart';
@@ -61,6 +62,13 @@ GoRouter goRouter = GoRouter(
       name: RouteName.helpCenter,
       builder: (context, state) {
         return HelpCenter();
+      },
+    ),
+    GoRoute(
+      path: RoutePath.myorderPath,
+      name: RouteName.myorderName,
+      builder: (context, state) {
+        return Myorderpage();
       },
     ),
   ],

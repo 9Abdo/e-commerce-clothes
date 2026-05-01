@@ -33,7 +33,9 @@ class Accountpage extends StatelessWidget {
               Listtile(
                 leading: Icons.settings,
                 title: "My Order",
-                onTap: () {},
+                onTap: () {
+                  goRouter.pushNamed(RouteName.myorderName);
+                },
               ),
               SizedBox(height: 16.h),
               Listtile(

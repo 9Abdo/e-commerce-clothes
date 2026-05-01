@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_clothes/features/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_clothes/features/cart/bloc/cart_event.dart';
 import 'package:e_commerce_clothes/features/cart/bloc/cart_state.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce_clothes/utils/style.dart';
 import 'package:e_commerce_clothes/widget/cartProduct_widget/card_item.dart';
 import 'package:e_commerce_clothes/widget/cartProduct_widget/row_price.dart';
 import 'package:e_commerce_clothes/widget/custombutton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,7 +99,34 @@ class _CartpageState extends State<Cartpage> {
                   SizedBox(height: 16.h),
                   Custombutton(
                     buttonName: "Go To Checkout →",
-                    onPressed: () {
+                    onPressed: () async {
+                      final state = context.read<CartBloc>().state;
+                      final userId = FirebaseAuth.instance.currentUser!.uid;
+
+                      final order = {
+                        "total": state.total,
+                        "status": "Pending",
+                        "date": DateTime.now(),
+                        "items": state.items
+                            .map(
+                              (e) => {
+                                "id": e.clothesmodel.id,
+                                "title": e.clothesmodel.clothesType,
+                                "price": e.clothesmodel.price,
+                                "image": e.clothesmodel.image,
+                                "quantity": e.quantity,
+                              },
+                            )
+                            .toList(),
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(userId)
+                          .collection("orders")
+                          .add(order);
+
+                      context.read<CartBloc>().add(ClearCart());
                       goRouter.pushReplacementNamed(RouteName.successName);
                     },
                   ),

@@ -6,6 +6,7 @@ class RoutePath {
   static const String productdetailsPath = "/productdetails";
   static const String successPath = "/successPath";
   static const String helpcenter = "/helpcenterPath";
+  static const String myorderPath = "/myorderPath";
 }
 
 class RouteName {
@@ -16,4 +17,5 @@ class RouteName {
   static const String productdetailsName = "productdetails";
   static const String successName = "successName";
   static const String helpCenter = "helpcenterName";
+  static const String myorderName = "myorderName";
 }
