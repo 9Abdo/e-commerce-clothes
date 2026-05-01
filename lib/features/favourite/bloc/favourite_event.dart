@@ -4,6 +4,10 @@ abstract class FavoriteEvent {}
 
 class ToggleFavorite extends FavoriteEvent {
   final Clothesmodel product;
-
   ToggleFavorite(this.product);
+}
+
+class UpdateFavoritesFromFirebase extends FavoriteEvent {
+  final List<Clothesmodel> favorites;
+  UpdateFavoritesFromFirebase(this.favorites);
 }

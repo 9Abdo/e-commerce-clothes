@@ -2,6 +2,7 @@ import 'package:e_commerce_clothes/features/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_clothes/features/favourite/bloc/favourite_bloc.dart';
 import 'package:e_commerce_clothes/route/approute.dart';
 import 'package:e_commerce_clothes/services/cart_services.dart';
+import 'package:e_commerce_clothes/services/favourie_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(390, 844),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => FavoriteBloc()),
+          BlocProvider(create: (context) => FavoriteBloc(FavoriteService())),
           BlocProvider(create: (context) => CartBloc(CartService())),
         ],
         child: MaterialApp.router(

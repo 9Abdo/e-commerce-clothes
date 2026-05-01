@@ -23,9 +23,7 @@ class _CardProductState extends State<CardProduct> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteBloc, FavoriteState>(
       builder: (context, state) {
-        bool isFav = state.favorites.any(
-          (item) => item.id == widget.clothesModel.id,
-        );
+        bool isFav = state.isFavorite(widget.clothesModel.id);
         return GestureDetector(
           onTap: () {
             goRouter.pushNamed(
@@ -71,11 +69,9 @@ class _CardProductState extends State<CardProduct> {
                     ),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          context.read<FavoriteBloc>().add(
-                            ToggleFavorite(widget.clothesModel),
-                          );
-                        });
+                        context.read<FavoriteBloc>().add(
+                          ToggleFavorite(widget.clothesModel),
+                        );
                       },
                       icon: Icon(
                         isFav ? Icons.favorite : Icons.favorite_border_outlined,

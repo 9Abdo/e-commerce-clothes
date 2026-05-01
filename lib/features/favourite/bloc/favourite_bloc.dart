@@ -1,21 +1,32 @@
+import 'dart:async';
 import 'package:e_commerce_clothes/features/favourite/bloc/favourite_event.dart';
 import 'package:e_commerce_clothes/features/favourite/bloc/favourite_state.dart';
+import 'package:e_commerce_clothes/services/favourie_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:e_commerce_clothes/models/clothesmodel.dart';
-
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  FavoriteBloc() : super(FavoriteState([])) {
-    on<ToggleFavorite>((event, emit) {
-      final currentList = List<Clothesmodel>.from(state.favorites);
+  final FavoriteService service;
+  late final StreamSubscription _favSub;
 
-      if (currentList.any((item) => item.id == event.product.id)) {
-        currentList.removeWhere((item) => item.id == event.product.id);
-      } else {
-        currentList.add(event.product);
-      }
+  FavoriteBloc(this.service)
+      : super(FavoriteState(favorites: [])) {
 
-      emit(FavoriteState(currentList));
+    on<ToggleFavorite>((event, emit) async {
+      await service.toggleFavorite(event.product);
     });
+
+    _favSub = service.getFavorites().listen((favorites) {
+      add(UpdateFavoritesFromFirebase(favorites));
+    });
+    
+    on<UpdateFavoritesFromFirebase>((event, emit) {
+      emit(state.copyWith(favorites: event.favorites));
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _favSub.cancel();
+    return super.close();
   }
 }
