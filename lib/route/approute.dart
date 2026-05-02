@@ -5,6 +5,7 @@ import 'package:e_commerce_clothes/views/homepage.dart';
 import 'package:e_commerce_clothes/views/loginpage.dart';
 import 'package:e_commerce_clothes/views/myorderpage.dart';
 import 'package:e_commerce_clothes/views/onbording.dart';
+import 'package:e_commerce_clothes/views/order_details.dart';
 import 'package:e_commerce_clothes/views/product_details.dart';
 import 'package:e_commerce_clothes/views/registerpage.dart';
 import 'package:e_commerce_clothes/views/successpage.dart';
@@ -69,6 +70,14 @@ GoRouter goRouter = GoRouter(
       name: RouteName.myorderName,
       builder: (context, state) {
         return Myorderpage();
+      },
+    ),
+    GoRoute(
+      path: RoutePath.orderdetailsPath,
+      name: RouteName.orderdetailsName,
+      builder: (context, state) {
+        final order = state.extra as Map<String, dynamic>;
+        return OrderDetails(order:order,);
       },
     ),
   ],

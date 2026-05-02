@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:e_commerce_clothes/utils/constimage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,9 +15,9 @@ class SatckPhoto extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 65.r,
-          backgroundImage: image !=  null
+          backgroundImage: image != null
               ? FileImage(image!)
-              : AssetImage("assets/images/p.jpg") as ImageProvider,
+              : AssetImage(Constimage.avaterImage) as ImageProvider,
         ),
 
         Positioned(

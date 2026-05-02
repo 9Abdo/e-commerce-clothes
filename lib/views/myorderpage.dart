@@ -10,6 +10,7 @@ class Myorderpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userId = FirebaseAuth.instance.currentUser!.uid;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("My Orders", style: AppStyle.appBarStyle),
@@ -36,13 +37,13 @@ class Myorderpage extends StatelessWidget {
           return ListView.builder(
             itemCount: orders.length,
             itemBuilder: (context, index) {
-              final order = orders[index];
+              final orderData = orders[index].data();
 
               return ListtileOrder(
-                orderId: order.id,
-                total: order['total'],
-                status: order['status'],
-                onTap: (){},
+                order: {
+                  ...orderData,
+                  "id": orders[index].id,
+                },
               );
             },
           );
